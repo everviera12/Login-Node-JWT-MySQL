@@ -1,0 +1,29 @@
+{
+  "name": "login-node-jwt-mysql",
+  "version": "1.0.0",
+  "description": "In this project we created a login with nodejs, JWT (jason web token) and mysql.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/everviera12/Login-Node-JWT-MySQL.git"
+  },
+  "author": "EverViera12",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/everviera12/Login-Node-JWT-MySQL/issues"
+  },
+  "homepage": "https://github.com/everviera12/Login-Node-JWT-MySQL#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^9.0.2",
+    "mysql": "^2.18.1"
+  }
+}
