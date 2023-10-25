@@ -1,1 +1,61 @@
-<h1> Login</h1>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- link css local -->
+  <link rel="stylesheet" href="css/login.css">
+  <!-- link remixicon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <title>Login AMER</title>
+</head>
+
+<body>
+  <div class="login__container">
+    <div class="login__items">
+      <div class="icon__login">
+        <img src="/img/iniciar-sesion.png" alt="login icon">
+      </div>
+
+      <form action="/login" method="POST">
+        <label for="user_name">Username<i class="ri-user-3-line"></i> </label>
+        <input type="text" name="user_name" id="userName__id" placeholder="username">
+
+        <label for="user_pass">Password<i class="ri-lock-password-line"></i></label>
+        <input type="password" name="user_pass" id="userPass__id" placeholder="password">
+
+        <button type="submit">Iniciar Sesion</button>
+      </form>
+    </div>
+
+    <a href="/register">REGISTRO</a>
+  </div>
+
+
+
+
+
+
+  <!-- link alertas de sweetalert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <% if(alert) { %>
+    <script>
+      Swal.fire({
+
+        icon: '<%= alertIcon %>',
+        title: '<%= alertTitle %>',
+        text: '<%= alertMessage %>',
+        showConfirmButton: '<%= confirmationButton %>',
+        timer: "<%= timer %>"
+      }).then(() => {
+        window.location = '/<%= ruta %>'
+      })
+    </script>
+    <% } %>
+
+</body>
+
+</html>

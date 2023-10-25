@@ -4,11 +4,11 @@ const connection = require("../database/db.mysql");
 const authController = require("../controller/auth.controller");
 
 // rutas para las vistas
-router.get("/", (req, res) => {
-  res.render("login.ejs", { alert: false });
+router.get("/register", (req, res) => {
+  res.render("register.ejs");
 });
 
 // rutas para los metodos del conrtolador
-router.post("/login", authController.login);
+router.post("/register", authController.register);
 
 module.exports = router;

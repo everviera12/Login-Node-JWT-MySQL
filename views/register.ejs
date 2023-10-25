@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- link css local -->
+  <link rel="stylesheet" href="css/registercss">
+  <!-- link remixicon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <title>Registro de Usuarios</title>
+</head>
+
+<body>
+
+  <button class=" ">Mostrar Form</button>
+
+  <form action="/register" method="POST" class="form__register">
+    <label for="name">Nombre</label>
+    <input name="name" type="text" required>
+
+    <label for="last_name_1">Apellido Materno</label>
+    <input name="last_name_1" type="text" required>
+
+    <label for="last_name_2">Apellido Paterno</label>
+    <input name="last_name_2" type="text" required>
+
+    <label for="user_name">Usuario</label>
+    <input name="user_name" type="text" placeholder="ej: eviera">
+
+    <label for="user_pass">Password</label>
+    <input name="user_pass" type="text" required placeholder="minimo 8 caracteres">
+
+    <button type="submit">Registrar</button>
+    <a href="/">Cancelar</a>
+  </form>
+
+</body>
+
+</html>

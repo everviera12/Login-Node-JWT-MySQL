@@ -21,10 +21,21 @@ dotenv.config({ path: "./env/.env" }); // Carga variables de entorno desde el ar
 
 
 // Middleware para gestionar cookies
-// app.use(cookieParser);
+app.use(cookieParser());
 
 
 app.use("/", require("./routers/login.router")); // Configuramos ruta principal para utilizar las rutas definidas en el archivo "login.router".
+app.use("/", require("./routers/register.router")); // Configuramos ruta principal para utilizar las rutas definidas en el archivo "register.router".
+
+
+
+// app.use((req, res, next) => {
+//   res.setHeader(
+//     "Content-Security-Policy",
+//     "font-src 'self' http://localhost:3000;"
+//   );
+//   next();
+// });
 
 
 // Inicia el servidor en el puerto 3000

@@ -1,0 +1,52 @@
+/* global variables */
+input,
+label {
+  padding: 10px;
+  width: 100%;
+  font-family: system-ui, sans-serif;
+  border-radius: 3px;
+  border: none;
+}
+
+label {
+  font-size: 1.5rem;
+  color: #ffff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.login__container {
+  position: absolute;
+  background-image: linear-gradient(#0000008f, #000000b6), url(../img/industrial-hall-1630741_1280.jpg);
+  background-size: cover;
+  background-position: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .login__items {
+    border-radius: 10px;
+    background-color: transparent;
+    display: grid;
+    gap: 10px;
+    padding: 50px;
+    width: 35%;
+    box-shadow: 1px 10px 15px #000;
+
+    .icon__login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .icon__login img {
+      width: 30%;
+    }
+  }
+}
