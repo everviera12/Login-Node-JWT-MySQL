@@ -4,37 +4,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <!-- LINK LOGO -->
+  <link rel="icon" href="img/amerLogoNormal.jpg" type="image/png">
   <!-- link css local -->
-  <link rel="stylesheet" href="css/login.css">
+  <link rel=" stylesheet" href="css/login.css">
   <!-- link remixicon -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+
 
   <title>Login AMER</title>
 </head>
 
 <body>
-  <div class="login__container">
-    <div class="login__items">
-      <div class="icon__login">
-        <img src="/img/iniciar-sesion.png" alt="login icon">
+
+  <div class="container">
+    <div class="login__container">
+      <div class="container__form">
+        <!-- logo -->
+        <div class="icon__login">
+          <img src="/img/iniciar-sesion.png" alt="login icon">
+        </div>
+
+        <!-- FORM -->
+        <form class="contact__form" action="/login" method="POST">
+          <label class="label__form" for="user_name">Username<i class="ri-user-3-line"></i> </label>
+          <input class="input__form" type="text" name="user_name" id="userName__id" placeholder="username">
+
+          <label class="label__form" for="user_pass">Password<i class="ri-lock-password-line"></i></label>
+          <input class="input__form" type="password" name="user_pass" id="userPass__id" placeholder="password">
+
+          <button class="submit__button" type="submit">Iniciar Sesion</button>
+
+          <!-- direccion para registrar -->
+          <!-- <a class="button__register" href="/register">REGISTRO</a> -->
+        </form>
       </div>
-
-      <form action="/login" method="POST">
-        <label for="user_name">Username<i class="ri-user-3-line"></i> </label>
-        <input type="text" name="user_name" id="userName__id" placeholder="username">
-
-        <label for="user_pass">Password<i class="ri-lock-password-line"></i></label>
-        <input type="password" name="user_pass" id="userPass__id" placeholder="password">
-
-        <button type="submit">Iniciar Sesion</button>
-      </form>
     </div>
 
-    <a href="/register">REGISTRO</a>
+    <div class="logo__container">
+      <img class="logo__amer" src="/img/amerLogo.png" alt="logo amer">
+    </div>
   </div>
-
-
 
 
 
@@ -44,7 +55,6 @@
   <% if(alert) { %>
     <script>
       Swal.fire({
-
         icon: '<%= alertIcon %>',
         title: '<%= alertTitle %>',
         text: '<%= alertMessage %>',

@@ -1,7 +1,9 @@
 const express = require("express"); // Importamos el módulo 'express'
 const dotenv = require("dotenv");  // Importamos el módulo 'dotenv' para cargar variables de entorno
 const cookieParser = require("cookie-parser"); // Importamos el módulo 'cookieParser' para gestionar cookies en solicitudes HTTP.
-
+// const router = express.Router();
+// const authController = require("./controller/auth.controller");
+ 
 
 const app = express(); // Creamos una instancia de la aplicación Express.
 
@@ -24,18 +26,28 @@ dotenv.config({ path: "./env/.env" }); // Carga variables de entorno desde el ar
 app.use(cookieParser());
 
 
+// deshabilitar click hacia atras al logout
+// app.use((req, res, next) => {
+//   if (!req.user_name) {
+//     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
+//   } else {
+//   }
+// });
+
+
 app.use("/", require("./routers/login.router")); // Configuramos ruta principal para utilizar las rutas definidas en el archivo "login.router".
 app.use("/", require("./routers/register.router")); // Configuramos ruta principal para utilizar las rutas definidas en el archivo "register.router".
+app.use("/", require("./routers/dashboard.router")); // Configuramos ruta principal para utilizar las rutas definidas en el archivo "register.router".
 
 
 
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     "Content-Security-Policy",
-//     "font-src 'self' http://localhost:3000;"
-//   );
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "font-src 'self' http://localhost:3000;"
+  );
+  next();
+});
 
 
 // Inicia el servidor en el puerto 3000

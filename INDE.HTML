@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerta Bootstrap con Animación y Temporizador en JavaScript</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <button id="mostrarAlerta" class="btn btn-primary">Mostrar Alerta con Animación y Temporizador</button>
+    <div class="alert alert-success mt-3" id="miAlerta"  style="display: none;">
+      Esta es una alerta de Bootstrap con animación. ¡Éxito!
+    </div>
+  </div>
+
+  <script>
+    const mostrarAlerta = () => {
+      const alerta = document.getElementById("miAlerta");
+      alerta.style.display = "block";
+      alerta.style.opacity = 0;
+
+      let opacity = 0;
+      const fadeIn = () => {
+        if (opacity < 1) {
+          opacity += 0.05;
+          alerta.style.opacity = opacity;
+          requestAnimationFrame(fadeIn);
+        }
+      };
+
+      fadeIn();
+
+      // Ocultar la alerta después de 1 segundo
+      setTimeout(() => {
+        let opacity = 1;
+        const fadeOut = () => {
+          if (opacity > 0) {
+            opacity -= 0.05;
+            alerta.style.opacity = opacity;
+            requestAnimationFrame(fadeOut);
+          } else {
+            alerta.style.display = "none";
+          }
+        };
+        fadeOut();
+      }, 100); // 1000 ms = 1 segundo
+    };
+
+    document.getElementById("mostrarAlerta").addEventListener("click", mostrarAlerta);
+  </script>
+</body>
+
+</html>

@@ -79,6 +79,7 @@ exports.login = async (req, res) => {
             results.length == 0 ||
             !(await bcryptjs.compare(userLogin.user_pass, results[0].user_pass))
           ) {
+            console.log(error);
             res.render("login", {
               alert: true,
               alertIcon: "error",
@@ -90,11 +91,17 @@ exports.login = async (req, res) => {
             });
           } else {
             const id = results[0].id_user;
-            const token = jsonwebtoken.sign({ id_user: id }, process.env.JWT_SECRETO, {
-              expiresIn: process.env.JWT_TEMP_EX,
-            });
+            const token = jsonwebtoken.sign(
+              { id_user: id },
+              process.env.JWT_SECRETO,
+              {
+                expiresIn: process.env.JWT_TEMP_EX,
+              }
+            );
 
-            console.log("TOKEN " + token + " para el USUARIO " + userLogin.user_name);
+            console.log(
+              "TOKEN " + token + " para el USUARIO " + userLogin.user_name
+            );
 
             const cookieOptions = {
               expires: new Date(
@@ -102,14 +109,14 @@ exports.login = async (req, res) => {
               ),
               httpOnly: true,
             };
-            res.cookie("JSON WEB TOKEN EVER", token, cookieOptions);
+            res.cookie("jwtEver", token, cookieOptions);
             res.render("login", {
               alert: true,
               alertIcon: "success",
               alertTitle: "Éxito",
               alertMessage: "Inicio de sesión exitoso",
-              confirmationButton: true,
-              timer: false,
+              confirmationButton: false,
+              timer: 1500, // Duración en milisegundos
               ruta: "dashboard",
             });
           }
@@ -117,7 +124,46 @@ exports.login = async (req, res) => {
       );
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    res.status(500).json({ error: "Error en el servidor" });
   }
 };
 
+// procedimiento para autenicar las credenciales
+exports.idAuthenticated = async (req, res, next) => {
+  if (req.cookies.jsonwebtoken) {
+    try {
+      const decode = await promisify(jsonwebtoken.verify)(
+        req.cookies.jsonwebtoken,
+        process.env.JWT_SECRETO
+      );
+
+      connection.query(
+        "SELECT * FROM userData WHERE id = ?",
+        [decode.id],
+        (error, results) => {
+          if (error) {
+            console.error("Error en la consulta a la base de datos:", error);
+            return res.status(500).json({ error: "Error en el servidor" });
+          }
+          if (results.length === 0) {
+            return res.status(401).json({ error: "Usuario no autorizado" });
+          }
+          req.user_name = results[0];
+          return next();
+        }
+      );
+    } catch (error) {
+      console.error("\x1b[31mCATCH ERROR", error, "\x1b[0m");
+      res.status(500).json({ error: "Error en el servidor" });
+    }
+  } else {
+    res.redirect("/");
+  }
+};
+
+// logout
+exports.logout = (req, res) => {
+  res.clearCookie("jwtEver");
+  return res.redirect("/");
+};
